@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>StudyProject</title>
+        <title>Bootstrap demo</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     </head>
@@ -26,15 +26,19 @@
                         </li>
                     </ul>
                     <? if(!empty($_SESSION['id'])): ?>
-                        <a href="/profile.php" class="btn btn-success me-3">Профиль</a>
-                        <a href="/logout.php" class="btn btn-success">Выход</a>
+                        <a href="/profile" class="btn btn-success me-3">Профиль</a>
+                        <a href="/php/logout.php" class="btn btn-success">Выход</a>
                     <? else: ?>
-                        <a href="/reg.php" class="btn btn-success me-3">Регистрация</a>
-                        <a href="/login.php" class="btn btn-success">Вход</a>
+                        <a href="/reg" class="btn btn-success me-3">Регистрация</a>
+                        <a href="/login" class="btn btn-success">Вход</a>
                     <? endif; ?>
                 </div>
             </div>
         </nav>
+
+        <!--Контент из файлов-->
+        <?= $content; ?>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     </body>
 </html>
