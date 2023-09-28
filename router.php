@@ -1,9 +1,11 @@
 <?php
     session_start();
     $path = $_SERVER['REQUEST_URI'];
+		$pathArr = explode('/', $path);
     $method = $_SERVER['REQUEST_METHOD'];
     $mysqli = new mysqli('127.0.0.1', 'root', '',  'studybase');
     require_once('php/classes/User.php');
+		require_once('php/classes/Blog.php');
     $content =  "Страница не существует 404";
     if($path == "/login" && $method=='GET'){
         $content = file_get_contents('views/login.html');
@@ -21,6 +23,23 @@
         exit(User::getCurrentUser());
     }else if($path == '/uploadUserAvatar'){
         exit(User::uploadUserAvatar());
-    }
-
+    }else if($path == "/addArticle" && $method=='GET'){
+			$content = file_get_contents('views/addArticle.html');
+		}else if($path == "/addArticle" && $method=='POST'){
+			exit(Blog::addArticle());
+		}else if($path == "/getArticle"){
+			exit(Blog::getArticle());
+		}else if($path == '/logout'){
+			exit(User::logout());
+		}else if($pathArr[1] == "blog" && $method == "GET"){
+			$content = file_get_contents('views/blog.html');
+		}else if($path == "/getArticle" && $method == "POST"){
+			exit(Blog::getArticle());
+		}else if($pathArr[1] == 'deleteArticle'){
+			exit(Blog::deleteArticle($pathArr[2]));
+		}else if($pathArr[1] == 'editArticle' && $method == "GET"){
+			$content = file_get_contents('views/editArticle.html');
+		}else if($pathArr[1] == 'editArticle' && $method == "POST"){
+			exit(Blog::editArticle($pathArr[2]));
+		}
     require_once 'views/template.php';

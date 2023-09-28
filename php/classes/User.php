@@ -49,8 +49,13 @@
             $path = 'img/'.$userAvatar['name']; //   img/picture.jpg
             move_uploaded_file($userAvatar['tmp_name'], $path);
             // `avatar`='/$path' -> /img/picture.jpg
-            $mysqli->query("UPDATE users SET avatar='/$path' WHERE id = '$userId'");
+            $mysqli->query("UPDATE `users` SET `avatar`='/$path' WHERE id = '$userId '");
             $_SESSION['avatar'] = "/$path";
             header('Location: /profile');
+        }
+        public static function logout(){
+            session_start();
+            session_destroy();
+            header('Location: /login');
         }
     }
